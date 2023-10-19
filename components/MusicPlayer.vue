@@ -131,10 +131,10 @@ const formatTime = (value: number) => {
   </div>
 
   <div class="settings">
-    <div class="settings__item center" @click="emit('openDialog', 'playlist')">
+    <div class="settings__item center show-on-mobile" @click="emit('openDialog', 'playlist')">
       <i class="ri-play-list-fill"></i>
     </div>
-    <div class="settings__item center" @click="emit('openDialog', 'songs')">
+    <div class="settings__item center show-on-mobile" @click="emit('openDialog', 'songs')">
       <i class="ri-order-play-fill"></i>
     </div>
     <div class="settings__item center" @click="repeatAll = !repeatAll">

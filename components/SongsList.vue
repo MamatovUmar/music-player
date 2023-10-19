@@ -28,12 +28,8 @@ const mainStore = useMainStore()
         class="song"
       >
         <div>
-          <div class="song__title">
-            {{ track.title }}
-          </div>
-          <div class="song__artist">
-            {{ track.artist }}
-          </div>
+          <div class="song__title"> {{ track.title }} </div>
+          <div class="song__artist"> {{ track.artist }} </div>
         </div>
         <div
           class="song__play center"

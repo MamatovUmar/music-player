@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import {Playlist, PlaylistResponse, Track} from "~/types/track";
+import { Playlist, PlaylistResponse, Track } from "~/types/track";
 import { useFetch } from "#app";
 
 export const useMainStore = defineStore('main', {

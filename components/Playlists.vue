@@ -7,9 +7,9 @@ const mainStore = useMainStore()
 <template>
   <section v-if="mainStore.playlists" class="playlists">
     <div
-        v-for="item of mainStore.playlists"
-        :key="item.id"
-        class="playlists__item"
+      v-for="item of mainStore.playlists"
+      :key="item.id"
+      class="playlists__item"
     >
       <div
         class="playlists__cover"

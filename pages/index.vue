@@ -7,9 +7,7 @@ import SongsList from "~/components/SongsList.vue";
 import { useMainStore } from "~/store";
 
 const mainStore = useMainStore()
-
 const sidebarType = ref<string>('')
-const openSidebar = ref<boolean>(false)
 
 await Promise.all([
   mainStore.getAllPlaylist(),
@@ -17,16 +15,14 @@ await Promise.all([
 ])
 
 const openDialog = (type: string) => {
-  console.log(type)
   sidebarType.value = type
 }
-
 </script>
 
 <template>
   <main class="home-page">
     <div :class="['content', 'container', sidebarType]">
-      <i class="ri-close-fill content__close" @click="sidebarType = ''"></i>
+      <i class="ri-close-fill content__close show-on-mobile" @click="sidebarType = ''"></i>
       <Playlists />
       <SongsList />
     </div>
@@ -56,7 +52,7 @@ const openDialog = (type: string) => {
   @media (max-width: 757px) {
     display: block;
     padding: 50px 0 20px;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     background: rgb(52 57 62);

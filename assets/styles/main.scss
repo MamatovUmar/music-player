@@ -24,3 +24,9 @@ body {
   align-items: center;
   justify-content: center;
 }
+.show-on-mobile {
+  display: none;
+  @media (max-width: 757px) {
+    display: block;
+  }
+}
