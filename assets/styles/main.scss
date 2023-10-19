@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 @import "normalize.css";
-@import "colors";
 @import "../font-icons/remixicon.css";
 
 body {
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(195deg, #2E3338, #181A1D);
   min-height: 100dvh;
-  color: $main-text-color;
+  color: #A1A7AE;
 }
 
 .container {
