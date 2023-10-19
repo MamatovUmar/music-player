@@ -3,6 +3,16 @@
 import AppFooter from "~/components/AppFooter.vue";
 import Playlists from "~/components/Playlists.vue";
 import SongsList from "~/components/SongsList.vue";
+
+import { useMainStore } from "~/store";
+
+const mainStore = useMainStore()
+
+await Promise.all([
+  mainStore.getAllPlaylist(),
+  mainStore.getPlaylist(1)
+])
+
 </script>
 
 <template>

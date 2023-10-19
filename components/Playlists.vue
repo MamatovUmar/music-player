@@ -1,33 +1,27 @@
 <script setup lang="ts">
+import { useMainStore } from "~/store";
 
+const mainStore = useMainStore()
 </script>
 
 <template>
-  <section class="playlists">
-    <div class="playlists__item">
+  <section v-if="mainStore.playlists" class="playlists">
+    <div
+        v-for="item of mainStore.playlists"
+        :key="item.id"
+        class="playlists__item"
+    >
       <div
         class="playlists__cover"
-        :style="`background: url(https://avatars.yandex.net/get-music-content/9838169/3609b1b3.a.27434098-1/m1000x1000)`"
+        :style="`background-image: url(${item.cover})`"
+        @click="mainStore.getPlaylist(item.id)"
       >
         <div class="playlists__hover center">
           <i class="ri-play-fill"></i>
         </div>
       </div>
-      <div class="playlists__title">Beautiful songs</div>
-      <div class="playlists__tracks">Tracks: 20</div>
-    </div>
-
-    <div class="playlists__item">
-      <div
-          class="playlists__cover"
-          :style="`background: url(https://avatars.yandex.net/get-music-content/9838169/3609b1b3.a.27434098-1/m1000x1000)`"
-      >
-        <div class="playlists__hover center">
-          <i class="ri-play-fill"></i>
-        </div>
-      </div>
-      <div class="playlists__title">Beautiful songs</div>
-      <div class="playlists__tracks">Tracks: 20</div>
+      <div class="playlists__title">{{ item.title }}</div>
+      <div class="playlists__tracks">Tracks: {{ item.tracksId.length }}</div>
     </div>
   </section>
 </template>
@@ -47,6 +41,8 @@
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
+    background-size: cover;
+    background-position: center;
   }
   &__title {
     font-size: 16px;

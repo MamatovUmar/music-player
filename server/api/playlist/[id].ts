@@ -5,5 +5,10 @@ export default defineEventHandler(async (event) => {
     const id = getRouterParam(event, 'id')
     const playlist = playlists.find(el => el.id === Number(id)) as Playlist
 
-    return tracks.filter(el => playlist.tracksId.includes(el.id))
+    const songs = tracks.filter(el => playlist.tracksId.includes(el.id))
+
+    return {
+        playlist,
+        songs
+    }
 })

@@ -1,46 +1,31 @@
 <script setup lang="ts">
 import MusicPlayer from "~/components/MusicPlayer.vue";
+import { useMainStore } from "~/store";
+
+const mainStore = useMainStore()
 </script>
 
 <template>
 <div class="container">
   <div class="player-container">
     <div class="track">
-      <div class="track__cover" :style="`background: url(https://avatars.yandex.net/get-music-content/9838169/3609b1b3.a.27434098-1/m1000x1000)`"></div>
+      <div
+        v-if="mainStore.currentTrack"
+        class="track__cover"
+        :style="`background-image: url(${mainStore.currentTrack?.cover})`"
+      ></div>
       <div class="track__info">
-        <div class="track__title">Shape of you</div>
-        <div class="track__artist">Ed Sheeran</div>
+        <div class="track__title">{{ mainStore.currentTrack?.title }}</div>
+        <div class="track__artist">{{ mainStore.currentTrack?.artist }}</div>
       </div>
     </div>
 
     <MusicPlayer />
-
-    <div class="settings">
-      <div class="settings__item center">
-        <i class="ri-share-line"></i>
-      </div>
-      <div class="settings__item center">
-        <i class="ri-volume-up-line"></i>
-      </div>
-    </div>
   </div>
 </div>
 </template>
 
 <style scoped lang="scss">
-.settings {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  font-size: 20px;
-  &__item {
-    cursor: pointer;
-    width: 35px;
-    height: 35px;
-    border-radius: 30px;
-  }
-}
 .player-container {
   box-sizing: border-box;
   height: 135px;
@@ -59,6 +44,8 @@ import MusicPlayer from "~/components/MusicPlayer.vue";
     width: 70px;
     border-radius: 70px;
     box-shadow: 0 0 9px 5px #0E0F11;
+    background-size: cover;
+    background-position: center;
   }
   &__title {
     font-size: 20px;
