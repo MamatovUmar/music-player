@@ -8,24 +8,33 @@ import { useMainStore } from "~/store";
 
 const mainStore = useMainStore()
 
+const sidebarType = ref<string>('')
+const openSidebar = ref<boolean>(false)
+
 await Promise.all([
   mainStore.getAllPlaylist(),
   mainStore.getPlaylist(1)
 ])
 
+const openDialog = (type: string) => {
+  console.log(type)
+  sidebarType.value = type
+}
+
 </script>
 
 <template>
   <main class="home-page">
-    <div class="content container">
+    <div :class="['content', 'container', sidebarType]">
+      <i class="ri-close-fill content__close" @click="sidebarType = ''"></i>
       <Playlists />
       <SongsList />
     </div>
-    <AppFooter />
+    <AppFooter @openDialog="openDialog" />
   </main>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .home-page {
   display: flex;
   flex-direction: column;
@@ -37,5 +46,34 @@ await Promise.all([
   grid-template-columns: 250px auto;
   height: 100%;
   padding: 100px 0 50px;
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  @media (max-width: 757px) {
+    display: block;
+    padding: 50px 0 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgb(52 57 62);
+    width: 300px;
+    transform: translateX(300px);
+    visibility: hidden;
+    transition: all 0.3s;
+    &.playlist, &.songs {
+      transform: translateX(0);
+      visibility: visible;
+    }
+    &.playlist .songs {
+      display: none;
+    }
+    &.songs .playlists {
+      display: none;
+    }
+  }
 }
 </style>

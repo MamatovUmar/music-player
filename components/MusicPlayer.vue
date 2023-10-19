@@ -2,6 +2,10 @@
 import { useMainStore } from "~/store";
 import { computed, ref, watch } from "#imports";
 
+const emit = defineEmits<{
+  (e: 'openDialog', text: string): void
+}>()
+
 const mainStore = useMainStore()
 
 const audio = ref<HTMLAudioElement | null>(null)
@@ -127,6 +131,12 @@ const formatTime = (value: number) => {
   </div>
 
   <div class="settings">
+    <div class="settings__item center" @click="emit('openDialog', 'playlist')">
+      <i class="ri-play-list-fill"></i>
+    </div>
+    <div class="settings__item center" @click="emit('openDialog', 'songs')">
+      <i class="ri-order-play-fill"></i>
+    </div>
     <div class="settings__item center" @click="repeatAll = !repeatAll">
       <i v-if="repeatAll" class="ri-repeat-line"></i>
       <i v-else class="ri-repeat-one-line"></i>
@@ -209,6 +219,13 @@ const formatTime = (value: number) => {
     box-shadow: 0 0 9px 0 #0E0F11;
     cursor: pointer;
     background: linear-gradient(144deg, #0C6A99, #1998CB);
+  }
+
+  @media (max-width: 757px) {
+    flex-direction: column-reverse;
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 20px;
   }
 }
 </style>

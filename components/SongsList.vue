@@ -104,5 +104,23 @@ const mainStore = useMainStore()
     color: #62676E;
     font-weight: 500;
   }
+  @media (max-width: 757px) {
+    gap: 10px;
+    &__cover {
+      width: 80px;
+      height: 65px;
+      border-radius: 7px;
+    }
+    &__type {
+      font-size: 12px;
+    }
+    &__title{
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    &__tracks {
+      font-size: 12px;
+    }
+  }
 }
 </style>

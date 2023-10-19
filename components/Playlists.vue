@@ -66,5 +66,9 @@ const mainStore = useMainStore()
       opacity: 1;
     }
   }
+  @media (max-width: 757px) {
+    border-right: none;
+    width: 100%;
+  }
 }
 </style>

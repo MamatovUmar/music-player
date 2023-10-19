@@ -2,6 +2,10 @@
 import MusicPlayer from "~/components/MusicPlayer.vue";
 import { useMainStore } from "~/store";
 
+const emit = defineEmits<{
+  (e: 'openDialog', text: string): void
+}>()
+
 const mainStore = useMainStore()
 </script>
 
@@ -20,7 +24,7 @@ const mainStore = useMainStore()
       </div>
     </div>
 
-    <MusicPlayer />
+    <MusicPlayer @openDialog="(e) => emit('openDialog', e)" />
   </div>
 </div>
 </template>
@@ -34,6 +38,17 @@ const mainStore = useMainStore()
   grid-template-columns: 240px auto 100px;
   align-items: center;
   gap: 40px;
+  @media (max-width: 992px) {
+    gap: 20px;
+    grid-template-columns: 200px auto 80px;
+  }
+  @media (max-width: 757px) {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    border-top: none;
+  }
 }
 .track {
   display: flex;
@@ -42,6 +57,7 @@ const mainStore = useMainStore()
   &__cover {
     height: 70px;
     width: 70px;
+    min-width: 70px;
     border-radius: 70px;
     box-shadow: 0 0 9px 5px #0E0F11;
     background-size: cover;
@@ -56,6 +72,38 @@ const mainStore = useMainStore()
   &__artist {
     font-size: 13px;
     color: #555A60;
+  }
+  @media (max-width: 992px) {
+    gap: 10px;
+    &__title {
+      font-size: 16px;
+    }
+    &__artist {
+      font-size: 10px
+    }
+    &__cover {
+      height: 50px;
+      width: 50px;
+      min-width: 50px;
+    }
+  }
+
+  @media (max-width: 757px) {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;
+    &__cover {
+      width: 200px;
+      height: 200px;
+      border-radius: 200px;
+      margin-bottom: 10px;
+    }
+    &__title {
+      font-size: 20px;
+    }
+    &__artist {
+      font-size: 14px;
+    }
   }
 }
 </style>
